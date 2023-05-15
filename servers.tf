@@ -7,7 +7,7 @@ resource "aws_instance" "frontend" {
   }
 }
 
-output= "frontend" {
+output "frontend" {
    value=aws_instance.public_ip
 }
 resource "aws_instance" "mongodb" {
