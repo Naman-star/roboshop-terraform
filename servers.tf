@@ -1,11 +1,17 @@
+
+variable "instance_type" {
+ default = "t3.micro"
+}
+
 resource "aws_instance" "frontend" {
   ami           = "ami-0b5a2b5b8f2be4ec2"
-  instance_type = "t3.micro"
+  instance_type = var.instance_type
 
   tags = {
     Name = "frontend"
   }
 }
+
 
 resource "aws_route53_record" "frontend" {
   zone_id = "Z08621443HT6YNQD1Z6GT"
