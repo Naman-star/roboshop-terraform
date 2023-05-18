@@ -30,6 +30,7 @@ resource "aws_instance" "instance" {
   tags = {
     Name = var.components[count.index]
   }
+}
 
 
 
