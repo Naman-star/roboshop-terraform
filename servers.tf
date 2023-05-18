@@ -34,6 +34,7 @@ resource "aws_instance" "instance" {
 
 
 
+
 //resource "aws_route53_record" "frontend" {
 //  zone_id = "Z08621443HT6YNQD1Z6GT"
 //  name    = "frontend-dev.ndevopsb72.online"
