@@ -27,10 +27,14 @@ resource "aws_instance" "instance" {
   instance_type = var.instance_type
   vpc_security_group_ids = [ data.aws_security_group.allow-all.id ]
 
+
+
   tags = {
     Name = var.components[count.index]
   }
 }
+
+//row 20-35 we applied count refer learn-terraform>03-loop>count>main.tf
 
 
 
