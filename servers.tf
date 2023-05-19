@@ -75,6 +75,14 @@ resource "aws_instance" "instance" {
      Name = each.value["name"]
    }
  }
+ resource "aws_route53_record" "catalogue" {
+    for_each = var.components
+   zone_id = "Z08621443HT6YNQD1Z6GT"
+   name    = "${each.value["name"]}"-dev.ndevopsb72.online
+   type    = "A"
+   ttl     = 30
+   records = [aws_instance.instance[each.value["name"]].private_ip]
+ }
 
 
 
@@ -136,12 +144,14 @@ resource "aws_instance" "instance" {
 //
 
 //resource "aws_route53_record" "catalogue" {
+//   for_each = var.components
 //  zone_id = "Z08621443HT6YNQD1Z6GT"
-//  name    = "catalogue-dev.ndevopsb72.online"
+//  name    = "${each.value["name"]}"-dev.ndevopsb72.online
 //  type    = "A"
 //  ttl     = 30
-//  records = [aws_instance.catalogue.private_ip]
-//
+//  records = [aws_instance.instance[each.value["name"]].private_ip]
+//}
+
 
 //resource "aws_instance" "redis" {
 //  ami           = "ami-0b5a2b5b8f2be4ec2"
