@@ -52,7 +52,7 @@ variable "components" {
           instance_type = "t3.medium"
     }
     rabbitmq = {
-          name = "rabbitmq "
+          name = "rabbitmq"
           instance_type = "t3.small"
     }
     payment = {
