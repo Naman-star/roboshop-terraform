@@ -18,24 +18,25 @@ resource "aws_instance" "instance" {
  tags = {
      Name = each.value["name"]
    }
+   provisioner "remote-exec" {
+      connection {
+       type = "ssh"
+       user = "centos"
+       password = "DevOps321"
+       host = self.private_ip
+      }
+
+      inline {
+        "rm -rf roboshop-shell",
+        "git clone https://github.com/Naman-star/roboshop-shell",
+        "cd roboshop-shell",
+        "sudo bash ${each.value["name"]}.sh"
+           }
+
+    }
  }
 
- provisioner "remote-exec" {
-   connection {
-    type = "ssh"
-    user = "centos"
-    password = "DevOps321"
-    host = self.private_ip
-   }
 
-   inline {
-     "-rm -rf roboshop-shell",
-     "git clone https://github.com/Naman-star/roboshop-shell",
-     "cd roboshop-shell",
-     "sudo bash ${each.value["name"]}.sh"
-        }
-
- }
 
  resource "aws_route53_record" "records" {
    for_each = var.components
