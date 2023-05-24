@@ -18,6 +18,8 @@ resource "aws_instance" "instance" {
  tags = {
      Name = each.value["name"]
    }
+   }
+
   resource "null_resource" "provisioner" {
      depends_on = [aws_instance.instance, aws_route53_record.records]
      for_each = var.components
@@ -34,11 +36,11 @@ resource "aws_instance" "instance" {
             "git clone https://github.com/Naman-star/roboshop-shell",
             "cd roboshop-shell",
             "sudo bash ${each.value["name"]}.sh ${each.value["password"]}"
-            ]
+         ]
 
-        }
+     }
   }
- }
+
 
 
 
