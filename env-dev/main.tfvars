@@ -35,7 +35,7 @@ frontend = {
     rabbitmq = {
           name = "rabbitmq"
           instance_type = "t3.small"
-          password = "roboshop123"
+          password = "Robosop@1"
     }
     payment = {
           name = "payment"
