@@ -4,9 +4,7 @@ output "ami" {
 value = data.aws_ami.centos.image_id
 }
 
-variable "instance_type" {
- default = "t3.small"
-}
+
 
 
 
