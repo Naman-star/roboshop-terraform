@@ -13,7 +13,7 @@ resource "aws_instance" "instance" {
  instance_type          = var.instance_type
  vpc_security_group_ids = [ data.aws_security_group.allow-all.id ]
  tags = {
-     Name = var.components_name
+     Name = var.component_name
    }
  }
 
@@ -31,7 +31,7 @@ resource "aws_instance" "instance" {
             "rm -rf roboshop-shell",
             "git clone https://github.com/Naman-star/roboshop-shell",
             "cd roboshop-shell",
-            "sudo bash ${var.components_name}.sh ${var.password}"
+            "sudo bash ${var.component_name}.sh ${var.password}"
          ]
 
      }
@@ -42,7 +42,7 @@ resource "aws_instance" "instance" {
 
  resource "aws_route53_record" "records" {
    zone_id = "Z08621443HT6YNQD1Z6GT"
-   name    = "${var.components_name}-dev.ndevopsb72.online"
+   name    = "${var.component_name}-dev.ndevopsb72.online"
    type    = "A"
    ttl     = 30
    records = [aws_instance.instance.private_ip]
