@@ -1,57 +1,66 @@
-
-
-output "ami" {
-value = data.aws_ami.centos.image_id
+module "servers" {
+ for_each = var.components
+ source = "./module"
+ component_name = each.value["name"]
+ env = var.env
+ instance_type = each.value["instance_type"]
+ password = lookup(each.value, "password", "null")
 }
 
-variable "instance_type" {
- default = "t3.small"
-}
+//output "ami" {
+//value = data.aws_ami.centos.image_id
+//}
+
+//variable "instance_type" {
+// default = "t3.small"
+//}
 
 
 
-resource "aws_instance" "instance" {
- for_each               = var.components
- ami                    = data.aws_ami.centos.image_id
- instance_type          = each.value["instance_type"]
- vpc_security_group_ids = [ data.aws_security_group.allow-all.id ]
- tags = {
-     Name = each.value["name"]
-   }
-   }
+//resource "aws_instance" "instance" {
+// for_each               = var.components
+// ami                    = data.aws_ami.centos.image_id
+// instance_type          = each.value["instance_type"]
+// vpc_security_group_ids = [ data.aws_security_group.allow-all.id ]
+// tags = {
+//     Name = each.value["name"]
+//   }
+// }
 
-  resource "null_resource" "provisioner" {
-     depends_on = [aws_instance.instance, aws_route53_record.records]
-     for_each = var.components
-     provisioner "remote-exec" {
-          connection {
-           type = "ssh"
-           user = "centos"
-           password = "DevOps321"
-           host = aws_instance.instance[each.value["name"]].private_ip
-          }
+//  resource "null_resource" "provisioner" {
+//     depends_on = [aws_instance.instance, aws_route53_record.records]
+//     for_each = var.components
+//     provisioner "remote-exec" {
+//          connection {
+//           type = "ssh"
+//           user = "centos"
+//           password = "DevOps321"
+//           host = aws_instance.instance[each.value["name"]].private_ip
+//          }
 
-         inline = [
-            "rm -rf roboshop-shell",
-            "git clone https://github.com/Naman-star/roboshop-shell",
-            "cd roboshop-shell",
-            "sudo bash ${each.value["name"]}.sh ${lookup(each.value, "password", "null")}"
-         ]
+//         inline = [
+//            "rm -rf roboshop-shell",
+//            "git clone https://github.com/Naman-star/roboshop-shell",
+//            "cd roboshop-shell",
+//            "sudo bash ${each.value["name"]}.sh ${lookup(each.value, "password", "null")}"
+//         ]
 
-     }
-  }
-
-
+//     }
+//  }
 
 
- resource "aws_route53_record" "records" {
-   for_each = var.components
-   zone_id = "Z08621443HT6YNQD1Z6GT"
-   name    = "${each.value["name"]}-dev.ndevopsb72.online"
-   type    = "A"
-   ttl     = 30
-   records = [aws_instance.instance[each.value["name"]].private_ip]
- }
+
+
+// resource "aws_route53_record" "records" {
+//   for_each = var.components
+//   zone_id = "Z08621443HT6YNQD1Z6GT"
+//   name    = "${each.value["name"]}-dev.ndevopsb72.online"
+//   type    = "A"
+//   ttl     = 30
+//   records = [aws_instance.instance[each.value["name"]].private_ip]
+// }
+
+//////below code is before applying for each above we applied for each so we minimized code.row 9-62 we applied for each
 
 
 
