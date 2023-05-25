@@ -11,6 +11,7 @@ frontend = {
           name = "catalogue"
           instance_type = "t3.micro"
     }
+
     redis = {
           name = "redis"
           instance_type = "t3.small"
