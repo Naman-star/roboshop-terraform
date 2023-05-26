@@ -13,7 +13,8 @@ resource "aws_instance" "instance" {
  instance_type          = var.instance_type
  vpc_security_group_ids = [ data.aws_security_group.allow-all.id ]
  tags = {
-     Name = var.component_name
+     Name = var.env != "" ? "${var.component_name}-${var.env}" : var.component_name
+     //here in 16th row  we used condition  that conditions means if var.env is not equal toempty it takes ${var.component_name}-${var.env} this conditions if its empty it takes var.component_name.
    }
  }
 
