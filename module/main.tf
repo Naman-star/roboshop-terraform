@@ -13,8 +13,9 @@ resource "aws_instance" "instance" {
  instance_type          = var.instance_type
  vpc_security_group_ids = [ data.aws_security_group.allow-all.id ]
  tags = {
-     Name = var.env != "" ? "${var.component_name}-${var.env}" : var.component_name
-     //here in 16th row  we used condition  that conditions means if var.env is not equal toempty it takes ${var.component_name}-${var.env} this conditions if its empty it takes var.component_name.
+     Name = local.name
+     //here in 16th row  we used variable local.name u can check inside locals.tf we used condition  that conditions means if var.env is not equal toempty it takes ${var.component_name}-${var.env} this conditions if its empty it takes var.component_name.
+     //earlier in 16th row it was component.name
    }
  }
 
