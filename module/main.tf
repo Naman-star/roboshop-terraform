@@ -28,6 +28,7 @@ resource "aws_instance" "instance" {
            host = aws_instance.instance.private_ip
           }
 
+
          inline = [
             "rm -rf roboshop-shell",
             "git clone https://github.com/Naman-star/roboshop-shell",
