@@ -2,7 +2,7 @@ app_servers = {
  frontend = {
       name = "frontend"
       instance_type = "t3.small"
- }
+  }
 
     catalogue = {
           name = "catalogue"
@@ -32,7 +32,6 @@ app_servers = {
           password = "roboshop123"
     }
 }
-
 env = "dev"
 
 database_servers = {
