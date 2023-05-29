@@ -2,7 +2,7 @@ app_servers = {
  frontend = {
       name = "frontend"
       instance_type = "t3.small"
-  }
+ }
 
     catalogue = {
           name = "catalogue"
@@ -18,8 +18,6 @@ app_servers = {
           name = "cart"
           instance_type = "t3.micro"
     }
-      instance_type = "t3.small"
-        }
     shipping = {
           name = "shipping"
           instance_type = "t3.medium"
