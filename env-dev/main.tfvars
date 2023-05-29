@@ -1,8 +1,8 @@
 app_servers = {
-frontend = {
+ frontend = {
       name = "frontend"
       instance_type = "t3.small"
-    }
+ }
 
     catalogue = {
           name = "catalogue"
