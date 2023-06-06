@@ -30,12 +30,7 @@ resource "aws_instance" "instance" {
           }
 
 
-         inline = [
-            "rm -rf roboshop-shell",
-            "git clone https://github.com/Naman-star/roboshop-shell",
-            "cd roboshop-shell",
-            "sudo bash ${var.component_name}.sh ${var.password}"
-         ]
+         inline = var.app_type == "db" ? local.db_commands : local.app_commands
 
      }
   }
