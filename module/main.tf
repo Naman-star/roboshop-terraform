@@ -45,7 +45,7 @@ resource "aws_instance" "instance" {
    records = [aws_instance.instance.private_ip]
  }
 
- resource "aws_iam_role" "test_role" {
+ resource "aws_iam_role" "role" {
    name = "${var.component_name}-${var.env}-role"
    assume_role_policy = jsonencode({
      Version = "2012-10-17"
