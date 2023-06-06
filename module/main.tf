@@ -30,7 +30,7 @@ resource "aws_instance" "instance" {
            host = aws_instance.instance.private_ip
           }
 
-          inline = var.app_type == "db" ? local.db_servers : local.app_servers
+          inline = var.app_type == "db" ? local.db-servers : local.app-servers
 
      }
   }
