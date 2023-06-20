@@ -72,11 +72,11 @@ resource "aws_instance" "instance" {
    role = aws_iam_role.role.id
    policy = jsonencode({
                            "Version": "2012-10-17",
-                           "Statement": [
+                           "Statement" : [
                                {
-                                   "Sid": "VisualEditor0",
-                                   "Effect": "Allow",
-                                   "Action": [
+                                   "Sid" : "VisualEditor0",
+                                   "Effect" : "Allow",
+                                   "Action" : [
                                        "ssm:GetParameterHistory",
                                        "ssm:GetParametersByPath",
                                        "ssm:GetParameters",
@@ -85,10 +85,10 @@ resource "aws_instance" "instance" {
                                    "Resource": "arn:aws:ssm:us-east-1:871868163784:parameter/${var.env}.${var.component_name}.*"
                                },
                                {
-                                   "Sid": "VisualEditor1",
-                                   "Effect": "Allow",
-                                   "Action": "ssm:DescribeParameters",
-                                   "Resource": "*"
+                                   "Sid" : "VisualEditor1",
+                                   "Effect" : "Allow",
+                                   "Action" : "ssm:DescribeParameters",
+                                   "Resource" : "*"
                                }
                            ]
                        })
