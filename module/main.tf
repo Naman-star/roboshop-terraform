@@ -79,7 +79,6 @@ resource "aws_iam_instance_profile" "instance_profile" {
    role = aws_iam_role.role.id
 
    policy = jsonencode({
-   {
      "Version" : "2012-10-17",
      "Statement" : [
    {
@@ -98,7 +97,7 @@ resource "aws_iam_instance_profile" "instance_profile" {
    ]
    }
    ]
-   }
+
    })
 
  }
