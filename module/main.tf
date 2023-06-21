@@ -80,24 +80,25 @@ resource "aws_iam_instance_profile" "instance_profile" {
 
    policy = jsonencode({
    {
-     "Version": "2012-10-17",
-     "Statement": [
+     "Version" : "2012-10-17",
+     "Statement" : [
    {
-     "Sid": "VisualEditor0",
-     "Effect": "Allow",
-     "Action": [
+     "Sid" : "VisualEditor0",
+     "Effect" : "Allow",
+     "Action" : [
      "kms:Encrypt",
      "ssm:GetParameterHistory",
      "ssm:GetParametersByPath",
      "ssm:GetParameters",
      "ssm:GetParameter"
    ],
-     "Resource": [
+     "Resource" : [
      "arn:aws:ssm:us-east-1:871868163784:parameter/${var.env}.${var.component_name}.*",
      "arn:aws:kms:us-east-1:871868163784:key/8ed6ee73-145a-4993-ba10-87a6c6bd693b"
    ]
    }
    ]
+   }
    })
 
  }
