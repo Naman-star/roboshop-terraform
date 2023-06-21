@@ -92,7 +92,7 @@ resource "aws_iam_instance_profile" "instance_profile" {
      "ssm:GetParameter"
    ],
      "Resource": [
-     "arn:aws:ssm:us-east-1:871868163784:parameter/dev.frontend.*",
+     "arn:aws:ssm:us-east-1:871868163784:parameter/${var.env}.${var.component_name}.*",
      "arn:aws:kms:us-east-1:871868163784:key/8ed6ee73-145a-4993-ba10-87a6c6bd693b"
    ]
    }
