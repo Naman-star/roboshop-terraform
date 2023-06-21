@@ -85,7 +85,7 @@ resource "aws_iam_instance_profile" "instance_profile" {
      "Sid": "VisualEditor0",
      "Effect": "Allow",
      "Action": [
-     "kms:Decrypt",
+     "kms:Encrypt",
      "ssm:GetParameterHistory",
      "ssm:GetParametersByPath",
      "ssm:GetParameters",
