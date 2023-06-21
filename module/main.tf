@@ -22,6 +22,9 @@ resource "aws_instance" "instance" {
 
   resource "null_resource" "provisioner" {
      depends_on = [aws_instance.instance, aws_route53_record.records]
+    triggers = {
+      private_ip = aws_instance.instance.private_ip
+    }
      provisioner "remote-exec" {
           connection {
            type = "ssh"
@@ -98,6 +101,6 @@ resource "aws_iam_instance_profile" "instance_profile" {
    }
    ]
 
-   })
+   })h
 
  }
